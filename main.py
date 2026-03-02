@@ -7,6 +7,7 @@ import config.konfigurasi_sql as konfigurasi
 from bs4 import BeautifulSoup as bs
 import deteksi_waktu as detek
 
+baseUrl = "https://id.jobstreet.com"
 targetScrap = "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page=1&sortmode=ListedDate"
 response = req.get(targetScrap)
 soup = bs(response.text, "html.parser")
@@ -14,7 +15,7 @@ soup = bs(response.text, "html.parser")
 cursor = konfigurasi.sql.cursor()
 
 if response.status_code == 200:
-    print("\n>> RESPONSE STATUS: Sukses (200).")
+    print("\n>> RESPONSE STATUS: Sukses (200)")
 else:
     print(">> RESPONSE STATUS: Gagal")
 
@@ -35,6 +36,9 @@ for loker in lokerLoker:
     klasifikasiLoker = loker.find("div", {"data-testid": "job-classification"}).text.strip()
     waktuLoker = loker.find("span", {"data-automation": "jobListingDate"}).text.strip()
     waktuPostingLoker = detek.scanwaktu((waktuLoker))
+    urlLoker = loker.find("a", attrs = {"data-automation": "job-list-item-link-overlay"})
+    ambilUrlLoker = urlLoker.get("href") if urlLoker else None
+    urlLoker =  baseUrl + ambilUrlLoker if ambilUrlLoker else None
 
     # -- Input ke dalam variabel hasilscrap --
     hasilscrap.append({
@@ -44,17 +48,19 @@ for loker in lokerLoker:
         "deskripsi": deskripsiSingkatLoker,
         "klasifikasi": klasifikasiLoker,
         "waktuPostingLoker": waktuPostingLoker,
-        "waktuScrapLoker": detek.waktuSaatIni()
+        "waktuScrapLoker": detek.waktuSaatIni(),
+        "urlLoker": urlLoker
     })
 
     # -- Bentuk dataframe dari hasilscrap --
     dataFrame = pd.DataFrame(hasilscrap)
-    # -- Ubah dataframe jadi format csv --
+    # -- Convert dataframe jadi format csv --
     dataFrame.to_csv("hasil_scrap.csv", index=False, encoding="utf-8-sig")
 
 query = """
-INSERT INTO lowongan (posisi, perusahaan, lokasi, deskripsi, klasifikasi, waktuPostingLoker, waktuScrapLoker)
-VALUES (%s, %s, %s, %s, %s, %s, %s)
+INSERT INTO lowongan (posisi, perusahaan, lokasi, deskripsi, klasifikasi, waktuPostingLoker, waktuScrapLoker, url)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+ON DUPLICATE KEY UPDATE waktuScrapLoker = VALUES(waktuScrapLoker)
 """
 values = [
     (
@@ -64,7 +70,8 @@ values = [
         data["deskripsi"],
         data["klasifikasi"],
         data["waktuPostingLoker"],
-        data["waktuScrapLoker"]
+        data["waktuScrapLoker"],
+        data["urlLoker"]
     )
     for data in hasilscrap
 ]
