@@ -1,20 +1,21 @@
-from datetime import datetime, timedelta
+from datetime import datetime as dt
+from datetime import timedelta as td
 import re
 
-def parse_relative_time(text):
-    now = datetime.now()
+def scanwaktu(text):
+    now = dt.now()
 
     if "menit" in text:
-        minutes = int(re.search(r"\d+", text).group())
-        return now - timedelta(minutes=minutes)
-
+        menit = int(re.search(r"\d+", text).group())
+        return now - td(minutes=menit)
     elif "jam" in text:
-        hours = int(re.search(r"\d+", text).group())
-        return now - timedelta(hours=hours)
-
+        jam = int(re.search(r"\d+", text).group())
+        return now - td(hours=jam)
     elif "hari" in text:
-        days = int(re.search(r"\d+", text).group())
-        return now - timedelta(days=days)
-
+        hari = int(re.search(r"\d+", text).group())
+        return now - td(days=hari)
     else:
         return now
+
+def waktuSaatIni():
+    return dt.now()
