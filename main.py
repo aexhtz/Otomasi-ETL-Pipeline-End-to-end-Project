@@ -3,7 +3,8 @@
 
 import requests as req
 import pandas as pd
-import config.konfigurasi_sql as konfigurasi
+# import config.konfigurasi_sql as konfigurasi
+import config.konfigurasi_supabase as konfigurasi
 from bs4 import BeautifulSoup as bs
 import deteksi_waktu as detek
 
@@ -58,9 +59,12 @@ for loker in lokerLoker:
     dataFrame.to_csv("hasil_scrap.csv", index=False, encoding="utf-8-sig")
 
 query = """
-INSERT INTO lowongan (posisi, perusahaan, lokasi, deskripsi, klasifikasi, waktuPostingLoker, waktuScrapLoker, url)
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-ON DUPLICATE KEY UPDATE waktuScrapLoker = VALUES(waktuScrapLoker)
+INSERT INTO lowongan 
+(posisi, perusahaan, lokasi, deskripsi, klasifikasi, "waktuPostingLoker", "waktuScrapLoker", url)
+VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+ON CONFLICT (url)
+DO UPDATE SET
+"waktuScrapLoker" = EXCLUDED."waktuScrapLoker";
 """
 values = [
     (
