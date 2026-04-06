@@ -1,6 +1,3 @@
-# ------------------- PENGEMBANGAN -------------------- #
-# 1. Buat setiap potongan kode menjadi function agar kode menjadi lebih rapi dan lebih mudah untuk di maintenance
-
 import requests as req
 import pandas as pd
 # import config.konfigurasi_sql as konfigurasi
@@ -58,8 +55,9 @@ for loker in lokerLoker:
     # -- Convert dataframe jadi format csv --
     dataFrame.to_csv("hasil_scrap.csv", index=False, encoding="utf-8-sig")
 
+# Query Postgre
 query = """
-INSERT INTO lowongan 
+INSERT INTO lowongan
 (posisi, perusahaan, lokasi, deskripsi, klasifikasi, "waktuPostingLoker", "waktuScrapLoker", url)
 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
 ON CONFLICT (url)
