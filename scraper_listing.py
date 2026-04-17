@@ -13,6 +13,10 @@ HEADERS = {
         "Chrome/146.0.0.0 Mobile Safari/537.36 Edg/146.0.0.0"
     ),
     "accept-language": "en-US,en;q=0.9,id;q=0.8",
+    "connection": "keep-alive",
+    "origin": "https://id.jobstreet.com",
+    "referer": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?sortmode=ListedDate",
+    "accept": "application/x-clarity-gzip"
 }
 
 def fetch_listing_page(page: int = 5) -> BeautifulSoup | None:
