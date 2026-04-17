@@ -4,11 +4,11 @@ import os
 
 load_dotenv()
 
-USER = os.getenv("user")
-PASSWORD = os.getenv("password")
-HOST = os.getenv("host")
-PORT = os.getenv("port")
-DBNAME = os.getenv("dbname")
+USER = os.getenv("USER")
+PASSWORD = os.getenv("PASSWORD")
+HOST = os.getenv("HOST")
+PORT = os.getenv("PORT")
+DBNAME = os.getenv("DBNAME")
 
 # print(USER, PASSWORD, HOST, PORT, DBNAME)
 
