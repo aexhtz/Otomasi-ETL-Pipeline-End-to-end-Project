@@ -12,12 +12,18 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/146.0.0.0 Mobile Safari/537.36 Edg/146.0.0.0"
     ),
-    "accept-language": "en-US,en;q=0.9,id;q=0.8",
-    "connection": "keep-alive",
-    "origin": "https://id.jobstreet.com",
-    "referer": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?sortmode=ListedDate",
     "accept": "application/x-clarity-gzip",
-    "cookie": "MUID=35F746E899A9683E26B050BD98A86934"
+    "accept-language": "en-US,en;q=0.9,id;q=0.8",
+    "accept-encoding": "gzip, deflate, br, zstd",
+    "referer": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?sortmode=ListedDate",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-ch-ua": '"Microsoft Edge";v="147", "Not.A/Brand";v="8", "Chromium";v="147"',
+    "sec-ch-ua-mobile": "?0",
+    "connection": "keep-alive",
+    "sec-ch-ua-platform": '"Windows"',
+    "origin": "https://id.jobstreet.com",
 }
 
 def fetch_listing_page(page: int = 5) -> BeautifulSoup | None:
