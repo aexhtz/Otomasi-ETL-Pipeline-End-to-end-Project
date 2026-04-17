@@ -1,0 +1,49 @@
+name: Otomasi ETL Pipeline End-to-end
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      max_halaman:
+        description: "Jumlah halaman listing"
+        required: false
+        default: "1"
+
+jobs:
+  run-etl-ml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup python ver 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install depedensi
+        run: pip install -r requirements.txt
+
+      - name: Jalankan pipeline
+        env:
+          SUPABASE_HOST: ${{ secrets.SUPABASE_HOST }}
+          SUPABASE_PORT: ${{ secrets.SUPABASE_PORT }}
+          SUPABASE_DB: ${{ secrets.SUPABASE_DB }}
+          SUPABASE_USER: ${{ secrets.SUPABASE_USER }}
+          SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
+          MAX_HALAMAN: ${{ github.event.inputs.max_halaman || '1' }}
+          REQUEST_DELAY: "0.5"
+        run: python pipeline.py
+
+      - name: Upload hasil CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hasil-scrap-${{ github.run_id }}
+          path: hasil_scrap.csv
+          retention-days: 7
+          if-no-files-found: ignore

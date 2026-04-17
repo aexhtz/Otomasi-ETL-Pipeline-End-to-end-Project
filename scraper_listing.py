@@ -1,9 +1,3 @@
-"""
-scraper_listing.py
-Tahap Extract pertama: ambil daftar job ID dari halaman listing HTML JobStreet.
-Menggunakan HTML scraping karena endpoint GraphQL untuk listing belum ditemukan.
-"""
-
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -21,8 +15,7 @@ HEADERS = {
     "accept-language": "en-US,en;q=0.9,id;q=0.8",
 }
 
-
-def fetch_listing_page(page: int = 1) -> BeautifulSoup | None:
+def fetch_listing_page(page: int = 5) -> BeautifulSoup | None:
     """Fetch halaman listing loker, return BeautifulSoup atau None jika gagal."""
     url = LISTING_URL.format(page=page)
     try:
@@ -37,12 +30,10 @@ def fetch_listing_page(page: int = 1) -> BeautifulSoup | None:
         print(f"  [listing] ERROR koneksi: {e}")
         return None
 
-
 def ekstrak_job_id_dari_url(url: str) -> str | None:
     """Ekstrak job ID dari URL loker. Contoh: /id/job/91351476 -> '91351476'"""
     match = re.search(r"/job/(\d+)", url)
     return match.group(1) if match else None
-
 
 def parse_listing(soup: BeautifulSoup) -> list[dict]:
     """
@@ -75,8 +66,7 @@ def parse_listing(soup: BeautifulSoup) -> list[dict]:
 
     return hasil
 
-
-def get_semua_job_id(max_halaman: int = 1) -> list[dict]:
+def get_semua_job_id(max_halaman: int = 5) -> list[dict]:
     """
     Entry point modul ini.
     Fetch beberapa halaman listing dan kumpulkan semua job ID.

@@ -104,16 +104,16 @@ def transform_detail(raw: dict, job_id: str, url_loker: str, waktu_scrap: str) -
     if not raw:
         return None
 
-    job             = raw.get("job", {})
-    work_arr        = raw.get("workArrangements", {})
-    gfj             = raw.get("gfjInfo", {}) or {}
+    job             = raw.get("job") or {}
+    work_arr        = raw.get("workArrangements") or {}   # null-safe: GraphQL bisa kirim null
+    gfj             = raw.get("gfjInfo") or {}
     company         = raw.get("companyProfile") or {}
     company_overview = company.get("overview") or {}
     rating          = safe_get(company, "reviewsSummary", "overallRating")
 
     # Klasifikasi
-    tracking        = job.get("tracking", {})
-    clf_info        = tracking.get("classificationInfo", {}) or {}
+    tracking        = job.get("tracking") or {}
+    clf_info        = tracking.get("classificationInfo") or {}
 
     # Work arrangements (bisa multiple: Hybrid, Remote, Onsite)
     arrangements    = [a.get("label") for a in (work_arr.get("arrangements") or [])]

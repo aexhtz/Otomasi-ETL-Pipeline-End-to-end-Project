@@ -10,7 +10,7 @@ HOST = os.getenv("host")
 PORT = os.getenv("port")
 DBNAME = os.getenv("dbname")
 
-print(USER, PASSWORD, HOST, PORT, DBNAME)
+# print(USER, PASSWORD, HOST, PORT, DBNAME)
 
 try:
     sql = psycopg2.connect(
@@ -20,7 +20,7 @@ try:
         port=PORT,
         dbname=DBNAME
     )
-    print("[OK] Berhasil terhubung Supabase.")
+    print("[Supabase] Berhasil terhubung")
 
 except Exception as e:
-    print(f"[BAD] Gagal koneksi {e}")
+    print(f"[Supabase] Gagal terhubung {e}")

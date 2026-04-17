@@ -16,7 +16,6 @@ Transformasi yang dilakukan:
 import re
 from datetime import datetime, timezone
 
-
 # ══════════════════════════════════════════════════════════════════════════════
 # 1. TRANSFORM WAKTU
 # ══════════════════════════════════════════════════════════════════════════════
@@ -69,7 +68,6 @@ def transform_waktu(iso_string: str | None) -> dict:
             "tahun","bulan","nama_bulan","hari","jam",
             "hari_minggu","nama_hari","kuartal","tanggal_posting"
         ]}
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 2. TRANSFORM GAJI
@@ -199,7 +197,6 @@ def transform_gaji(gaji_raw: str | None) -> dict:
 
     # Tidak ada angka yang bisa diparsing
     return default
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 3. EKSTRAK SKILL
@@ -352,7 +349,6 @@ def transform_skill(deskripsi: str | None) -> dict:
         "skill_string"    : ",".join(ditemukan),  # untuk kolom teks di Looker
     }
 
-
 # ══════════════════════════════════════════════════════════════════════════════
 # 4. NORMALISASI LOKASI
 # ══════════════════════════════════════════════════════════════════════════════
@@ -487,7 +483,6 @@ def transform_lokasi(lokasi_raw: str | None) -> dict:
         "is_remote"       : is_remote,
     }
 
-
 # ══════════════════════════════════════════════════════════════════════════════
 # 5. STANDARDISASI ENUM (NULL HANDLING)
 # ══════════════════════════════════════════════════════════════════════════════
@@ -540,7 +535,6 @@ def transform_enum(tipe_kerja: str | None, work_arrangement: str | None) -> dict
         "work_arrangement_std": arr_std,
     }
 
-
 # ══════════════════════════════════════════════════════════════════════════════
 # 6. DURASI TAYANG & ACTIVE FLAG
 # ══════════════════════════════════════════════════════════════════════════════
@@ -586,7 +580,6 @@ def transform_durasi(waktu_posting: str | None, waktu_expired: str | None,
         default["hari_sejak_post"] = (sekarang - dt_posting).days
 
     return default
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 7. GROUPING KLASIFIKASI
@@ -677,7 +670,6 @@ def transform_klasifikasi(klasifikasi_raw: str | None,
         "kategori_besar"    : kategori,
         "sub_klasifikasi_std": sub_clean or "Tidak Disebutkan",
     }
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MASTER TRANSFORM — gabungkan semua transformasi
@@ -774,7 +766,7 @@ def transform_semua(data_list: list[dict]) -> list[dict]:
     Input  : output dari scraper_detail.get_semua_detail()
     Output : list dict yang sudah ditransform, siap di-load ke database
     """
-    print(f"\n[TRANSFORM] Memproses {len(data_list)} loker...")
+    print(f"\n[Transform] Memproses {len(data_list)} loker")
     hasil = []
     gagal = 0
 
@@ -783,8 +775,8 @@ def transform_semua(data_list: list[dict]) -> list[dict]:
             transformed = transform_satu_loker(item)
             hasil.append(transformed)
         except Exception as e:
-            print(f"  [transform] SKIP job {item.get('job_id','?')}: {e}")
+            print(f"  [Transform] SKIP job {item.get('job_id','?')}: {e}")
             gagal += 1
 
-    print(f"[TRANSFORM] Selesai. Berhasil: {len(hasil)}, Gagal: {gagal}")
+    print(f"[Transform] Transform selesai | Berhasil: {len(hasil)} | Gagal: {gagal}")
     return hasil
