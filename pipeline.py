@@ -390,7 +390,7 @@ def simpan_ke_csv(data: list[dict], output_path: str) -> None:
 def main():
     print("-" * 50)
     print("  Project TA Otomasi ETL Pipeline")
-    print(f"  Total page di scraping={MAX_HALAMAN} | Delay per scraping={REQUEST_DELAY}s")
+    print(f"  Total page di scraping=: {MAX_HALAMAN} | Delay per scraping: {REQUEST_DELAY}s")
     print("-" * 50)
 
     # [E1] Scrape listing

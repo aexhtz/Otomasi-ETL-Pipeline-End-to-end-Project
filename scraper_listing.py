@@ -16,7 +16,8 @@ HEADERS = {
     "connection": "keep-alive",
     "origin": "https://id.jobstreet.com",
     "referer": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?sortmode=ListedDate",
-    "accept": "application/x-clarity-gzip"
+    "accept": "application/x-clarity-gzip",
+    "cookie": "MUID=35F746E899A9683E26B050BD98A86934"
 }
 
 def fetch_listing_page(page: int = 5) -> BeautifulSoup | None:
