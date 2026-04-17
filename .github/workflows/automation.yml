@@ -30,11 +30,11 @@ jobs:
 
       - name: Jalankan pipeline
         env:
-          SUPABASE_HOST: ${{ secrets.SUPABASE_HOST }}
-          SUPABASE_PORT: ${{ secrets.SUPABASE_PORT }}
-          SUPABASE_DB: ${{ secrets.SUPABASE_DB }}
-          SUPABASE_USER: ${{ secrets.SUPABASE_USER }}
-          SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
+          SUPABASE_HOST: ${{ secrets.HOST }}
+          SUPABASE_PORT: ${{ secrets.PORT }}
+          SUPABASE_DB: ${{ secrets.DBNAME }}
+          SUPABASE_USER: ${{ secrets.USER }}
+          SUPABASE_PASSWORD: ${{ secrets.PASSWORD }}
           MAX_HALAMAN: ${{ github.event.inputs.max_halaman || '1' }}
           REQUEST_DELAY: "0.5"
         run: python pipeline.py
