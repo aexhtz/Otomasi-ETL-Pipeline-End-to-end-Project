@@ -1,7 +1,4 @@
 """
-pipeline.py
-ETL Pipeline JobStreet — Star Schema Edition
-
 Alur per run:
   [E1] Scrape listing HTML      → job_id list
   [CHECK] Query fact_lowongan   → existing job_id
@@ -30,7 +27,7 @@ REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
 
 
-# ─── INCREMENTAL ─────────────────────────────────────────────────
+# ---- Incremental
 
 def get_existing_job_ids() -> set[str]:
     """Ambil semua job_id yang sudah ada di fact_lowongan."""
@@ -38,10 +35,10 @@ def get_existing_job_ids() -> set[str]:
     try:
         cur.execute("SELECT job_id FROM fact_lowongan WHERE job_id IS NOT NULL;")
         existing = {row[0] for row in cur.fetchall()}
-        print(f"  [Incremental] Sudah ada di DB: {len(existing)} loker")
+        print(f" - [Incremental] Sudah ada di database: {len(existing)} loker")
         return existing
     except Exception as e:
-        print(f"  [Incremental] ERROR: {e}")
+        print(f" - [Incremental] Error: {e}")
         return set()
     finally:
         cur.close()
@@ -49,7 +46,7 @@ def get_existing_job_ids() -> set[str]:
 def filter_job_baru(scraped_list, existing_ids):
     job_baru = [x for x in scraped_list if x["job_id"] not in existing_ids]
     job_lama = [x for x in scraped_list if x["job_id"] in existing_ids]
-    print(f"  [Incremental] Job Baru: {len(job_baru)} | Job Lama: {len(job_lama)}")
+    print(f" - [Incremental] Job Baru: {len(job_baru)} | Job Lama: {len(job_lama)}")
     return job_baru, job_lama
 
 def update_waktu_scrap_lama(job_lama: list[dict]) -> None:
@@ -66,16 +63,15 @@ def update_waktu_scrap_lama(job_lama: list[dict]) -> None:
             values
         )
         konfigurasi.sql.commit()
-        print(f"  [Incremental] {len(values)} loker lama waktu scrap diperbarui")
+        print(f" - [Incremental] {len(values)} loker lama waktu scrap diperbarui")
     except Exception as e:
         konfigurasi.sql.rollback()
-        print(f"  [Incremental] ERROR update lama: {e}")
+        print(f" - [Incremental] ERROR update lama: {e}")
     finally:
         cur.close()
 
 
-# ─── LOAD: DIMENSI ───────────────────────────────────────────────
-
+# ---- Load Dimensi
 def upsert_dim_perusahaan(data: list[dict]) -> dict[str, int]:
     """
     Insert/update dim_perusahaan.
@@ -118,7 +114,7 @@ def upsert_dim_perusahaan(data: list[dict]) -> dict[str, int]:
         ) for v in values])
         konfigurasi.sql.commit()
 
-        # Ambil ID hasil upsert
+        # ---- Ambil ID hasil upsert
         nama_list = list(rows.keys())
         cur.execute(
             "SELECT id, nama_perusahaan FROM dim_perusahaan WHERE nama_perusahaan = ANY(%s)",
@@ -265,7 +261,7 @@ def upsert_dim_klasifikasi(data: list[dict]) -> dict[tuple, int]:
         cur.close()
 
 
-# ─── LOAD: FACT & BRIDGE ─────────────────────────────────────────
+# ---- Load Fact & Bridge
 
 def insert_fact_lowongan(data: list[dict], id_perusahaan: dict,
                           id_lokasi: dict, id_waktu: dict,
@@ -332,10 +328,10 @@ def insert_fact_lowongan(data: list[dict], id_perusahaan: dict,
             ON CONFLICT (job_id) DO NOTHING;
         """, values)
         konfigurasi.sql.commit()
-        print(f"  [load] {len(values)} loker masuk fact_lowongan.")
+        print(f" - [Load] {len(values)} loker masuk fact_lowongan")
     except Exception as e:
         konfigurasi.sql.rollback()
-        print(f"  [load] ERROR fact_lowongan: {e}")
+        print(f" - [Load] Error fact_lowongan: {e}")
         raise
     finally:
         cur.close()
@@ -385,18 +381,19 @@ def simpan_ke_csv(data: list[dict], output_path: str) -> None:
     print(f"  [Load] CSV tersimpan: {output_path} ({len(data)} baris)")
 
 
-# ─── MAIN ────────────────────────────────────────────────────────
+# ---- Main pipeline
 
 def main():
     print("-" * 50)
     print("  Project TA Otomasi ETL Pipeline")
-    print(f"  Total page di scraping=: {MAX_HALAMAN} | Delay per scraping: {REQUEST_DELAY}s")
+    print(f"  Total page di scraping: {MAX_HALAMAN}")
+    print(f"  Delay per scraping: {REQUEST_DELAY}s")
     print("-" * 50)
 
     # [E1] Scrape listing
     scraped_list = listing.get_semua_job_id(max_halaman=MAX_HALAMAN)
     if not scraped_list:
-        print("[PIPELINE] Tidak ada job ID. Pipeline dihentikan.")
+        print("[Pipeline] Tidak ada job ID. Pipeline dihentikan.")
         return
 
     # [CHECK + FILTER] Incremental
@@ -425,22 +422,22 @@ def main():
     # [L] Load ke star schema
     print("\n[Load] Menyimpan ke star schema")
 
-    print(" - Upsert dim_perusahaan")
+    print(" - [Load] Upsert dim_perusahaan")
     id_perusahaan = upsert_dim_perusahaan(hasil)
 
-    print(" - Upsert dim_lokasi")
+    print(" - [Load] Upsert dim_lokasi")
     id_lokasi = upsert_dim_lokasi(hasil)
 
-    print(" - Upsert dim_waktu")
+    print(" - [Load] Upsert dim_waktu")
     id_waktu = upsert_dim_waktu(hasil)
 
-    print(" - Upsert dim_klasifikasi")
+    print(" - [Load] Upsert dim_klasifikasi")
     id_klasifikasi = upsert_dim_klasifikasi(hasil)
 
-    print(" - Insert fact_lowongan")
+    print(" - [Load] Insert fact_lowongan")
     insert_fact_lowongan(hasil, id_perusahaan, id_lokasi, id_waktu, id_klasifikasi)
 
-    print(" - Insert bridge_skill")
+    print(" - [Load] Insert bridge_skill")
     insert_bridge_skill(hasil)
 
     # simpan_ke_csv(hasil, OUTPUT_CSV)

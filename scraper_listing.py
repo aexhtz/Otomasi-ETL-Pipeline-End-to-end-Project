@@ -1,16 +1,10 @@
 """
-scraper_listing.py
-Scraping listing JobStreet menggunakan Playwright.
-Mensimulasikan browser nyata untuk melewati bot detection.
-
-Install:
-  pip install playwright
-  playwright install chromium
+Scraping listing JobStreet menggunakan Playwright
+Mensimulasikan browser nyata untuk melewati bot detection
 """
 
 import re
 import time
-import asyncio
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 import deteksi_waktu as detek
 
@@ -55,7 +49,7 @@ def fetch_listing_page_playwright(page_num: int = 1) -> list[dict] | None:
                     java_script_enabled=True,
                 )
 
-                # Sembunyikan tanda-tanda automation
+                # ---- Sembunyikan tanda tanda automation
                 context.add_init_script("""
                     Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
                     Object.defineProperty(navigator, 'plugins', {get: () => [1, 2, 3]});
@@ -64,32 +58,32 @@ def fetch_listing_page_playwright(page_num: int = 1) -> list[dict] | None:
 
                 page = context.new_page()
 
-                # Kunjungi homepage dulu untuk dapat cookie
-                print(f"  [listing] Membuka homepage...")
+                # ---- Kunjungi homepage dahulu untuk mendapatkan cookie
+                print(f" - [Listing] Membuka homepage untuk mendapatkan cookie")
                 page.goto(BASE_URL, wait_until="domcontentloaded", timeout=30000)
                 time.sleep(2)
 
-                # Baru buka halaman listing
-                print(f"  [listing] Membuka halaman {page_num}...")
+                # ---- Baru buka halaman listing
+                print(f" - [Listing] Membuka halaman {page_num}")
                 page.goto(url, wait_until="domcontentloaded", timeout=30000)
 
-                # Tunggu artikel loker muncul
+                # ---- Tunggu artikel loker muncul
                 try:
                     page.wait_for_selector(
                         'article[data-automation="normalJob"]',
                         timeout=15000
                     )
                 except PlaywrightTimeout:
-                    print(f"  [listing] Selector tidak muncul dalam 15 detik (attempt {attempt})")
+                    print(f" - [Listing] Selector tidak muncul dalam 15 detik (attempt {attempt})")
                     browser.close()
                     if attempt < MAX_RETRY:
                         time.sleep(5 * attempt)
                         continue
                     return None
 
-                # Ambil semua artikel loker dari DOM
+                # ---- Ambil semua artikel loker dari DOM
                 articles = page.query_selector_all('article[data-automation="normalJob"]')
-                print(f"  [listing] Ditemukan {len(articles)} loker di halaman {page_num}")
+                print(f" - [Listing] Ditemukan {len(articles)} loker di halaman {page_num}")
 
                 hasil = []
                 for article in articles:
@@ -117,11 +111,11 @@ def fetch_listing_page_playwright(page_num: int = 1) -> list[dict] | None:
                 return hasil
 
         except Exception as e:
-            print(f"  [listing] ERROR attempt {attempt}: {e}")
+            print(f" - [Listing] Error, percobaan: {attempt}: {e}")
             if attempt < MAX_RETRY:
                 time.sleep(5 * attempt)
 
-    print(f"  [listing] Halaman {page_num} gagal setelah {MAX_RETRY} percobaan.")
+    print(f" - [Listing] Halaman {page_num} gagal setelah {MAX_RETRY} percobaan")
     return None
 
 
@@ -129,7 +123,7 @@ def get_semua_job_id(max_halaman: int = 1) -> list[dict]:
     """
     Entry point — fetch semua halaman listing dan kumpulkan job ID.
     """
-    print(f"\n[EXTRACT] Mulai scraping listing ({max_halaman} halaman) via Playwright...")
+    print(f"\n[EXTRACT] Mulai scraping (halaman {max_halaman})")
 
     semua = []
     for page_num in range(1, max_halaman + 1):
@@ -139,5 +133,5 @@ def get_semua_job_id(max_halaman: int = 1) -> list[dict]:
         if page_num < max_halaman:
             time.sleep(3)
 
-    print(f"[EXTRACT] Total job ID terkumpul: {len(semua)}")
+    print(f"[EXTRACT] Total JobID terkumpul: {len(semua)}")
     return semua

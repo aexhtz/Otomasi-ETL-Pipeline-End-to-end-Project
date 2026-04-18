@@ -164,7 +164,7 @@ def transform_detail(raw: dict, job_id: str, url_loker: str, waktu_scrap: str) -
         "isPrivateAdvertiser" : tracking.get("isPrivateAdvertiser"),
 
         # Info perusahaan
-        "company_industry"    : company_overview.get("industry"),
+        "company_industry"    : company_overview.get("industry") or "Tidak diketahui",
         "company_size"        : safe_get(company_overview, "size", "description"),
         "company_website"     : safe_get(company_overview, "website", "url"),
         "company_rating"      : safe_get(rating, "value") if rating else None,

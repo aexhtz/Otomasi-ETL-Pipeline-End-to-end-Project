@@ -20,7 +20,7 @@ try:
         port=SUPABASE_PORT,
         dbname=SUPABASE_DB
     )
-    print("[Supabase] Berhasil terhubung")
+    print("\n[Supabase] Berhasil terhubung ke database\n")
 
 except Exception as e:
     print(f"[Supabase] Gagal terhubung {e}")

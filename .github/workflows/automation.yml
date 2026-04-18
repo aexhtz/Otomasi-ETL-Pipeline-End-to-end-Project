@@ -19,24 +19,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup python ver 3.11
+      - name: Setup python ver - 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Debug env
-        run: |
-          echo "HOST is set: ${{ secrets.SUPABASE_HOST != '' }}"
-          echo "PASS is set: ${{ secrets.SUPABASE_PASSWORD != '' }}"
-
-      - name: Install depedensi
+      - name: Install dependensi
         run: pip install -r requirements.txt
 
       - name: Install playwright
         run: playwright install chromium
 
-      - name: Jalankan pipeline
+      - name: Pipeline
         env:
           SUPABASE_HOST: ${{ secrets.SUPABASE_HOST }}
           SUPABASE_PORT: ${{ secrets.SUPABASE_PORT }}
@@ -46,12 +41,3 @@ jobs:
           MAX_HALAMAN: ${{ github.event.inputs.max_halaman || '1' }}
           REQUEST_DELAY: "0.5"
         run: python pipeline.py
-
-      - name: Upload hasil CSV
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: hasil-scrap-${{ github.run_id }}
-          path: hasil_scrap.csv
-          retention-days: 7
-          if-no-files-found: ignore
