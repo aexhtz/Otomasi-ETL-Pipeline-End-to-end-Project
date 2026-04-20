@@ -6,12 +6,11 @@ Mensimulasikan browser nyata untuk melewati bot detection
 import re
 import time
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
-import deteksi_waktu as detek
+import Support.deteksi_waktu as detek
 
 BASE_URL    = "https://id.jobstreet.com"
 LISTING_URL = "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page={page}&sortmode=ListedDate"
-MAX_RETRY   = 3
-
+MAX_RETRY   = 1
 
 def ekstrak_job_id_dari_url(url: str) -> str | None:
     """Ekstrak job ID dari URL loker."""
@@ -59,7 +58,7 @@ def fetch_listing_page_playwright(page_num: int = 1) -> list[dict] | None:
                 page = context.new_page()
 
                 # ---- Kunjungi homepage dahulu untuk mendapatkan cookie
-                print(f" - [Listing] Membuka homepage untuk mendapatkan cookie")
+                print(f" - [Listing] Membuka homepage jobstreet")
                 page.goto(BASE_URL, wait_until="domcontentloaded", timeout=30000)
                 time.sleep(2)
 
@@ -71,7 +70,7 @@ def fetch_listing_page_playwright(page_num: int = 1) -> list[dict] | None:
                 try:
                     page.wait_for_selector(
                         'article[data-automation="normalJob"]',
-                        timeout=15000
+                        timeout=10000
                     )
                 except PlaywrightTimeout:
                     print(f" - [Listing] Selector tidak muncul dalam 15 detik (attempt {attempt})")

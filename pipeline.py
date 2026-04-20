@@ -18,9 +18,9 @@ Alur per run:
 import os
 import pandas as pd
 import config.konfigurasi_supabase as konfigurasi
-import scraper_listing as listing
-import scraper_detail  as detail
-import transformer     as transform
+import ETL.Extract.scraper_listing as listing
+import ETL.Extract.scraper_detail  as detail
+import ETL.Transform.transformer     as transform
 
 MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "1"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
@@ -339,7 +339,7 @@ def insert_fact_lowongan(data: list[dict], id_perusahaan: dict,
 
 def insert_bridge_skill(data: list[dict]) -> None:
     """Pecah skill_string ke baris terpisah di bridge_skill."""
-    from transformer import KATEGORI_SKILL
+    from ETL.Transform.transformer import KATEGORI_SKILL
 
     values = []
     for d in data:

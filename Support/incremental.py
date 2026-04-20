@@ -1,5 +1,4 @@
 """
-incremental.py
 Logik incremental untuk ETL pipeline JobStreet.
 
 Cara kerja:
@@ -52,7 +51,6 @@ def filter_job_baru(scraped_list: list[dict], existing_ids: set[str]) -> tuple[l
     print(f"  [incremental] Loker baru   : {len(job_baru)}")
     print(f"  [incremental] Loker lama   : {len(job_lama)} (sudah di DB, skip fetch)")
     return job_baru, job_lama
-
 
 def update_status_loker_lama(job_lama: list[dict]) -> None:
     """

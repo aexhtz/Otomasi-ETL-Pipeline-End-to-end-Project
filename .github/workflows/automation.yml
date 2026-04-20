@@ -8,7 +8,7 @@ on:
       max_halaman:
         description: "Jumlah halaman listing"
         required: false
-        default: "1"
+        default: "2"
 
 jobs:
   jalankan-etl:
