@@ -33,6 +33,6 @@ jobs:
           SUPABASE_DB: ${{ secrets.SUPABASE_DB }}
           SUPABASE_USER: ${{ secrets.SUPABASE_USER }}
           SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
-          REQUEST_DELAY: "0.5"
-
+          REQUEST_DELAY: ${{ vars.REQUEST_DELAY }}
+          MAX_HALAMAN_REKONSILIASI: ${{ vars.MAX_HALAMAN_REKONSILIASI }}
         run: python rekonsiliasi.py || python rekonsiliasi.py

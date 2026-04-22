@@ -9,11 +9,11 @@ import Support.reconciler      as reconcile
 MAX_HALAMAN_REKONSILIASI = int(os.getenv("MAX_HALAMAN_REKONSILIASI", "55"))
 
 def main():
-    print("=" * 55)
+    print("-" * 55)
     print("  REKONSILIASI — JobStreet")
     print(f"  MAX_HALAMAN_REKONSILIASI = {MAX_HALAMAN_REKONSILIASI}")
     print(f"  Threshold strategi 2 = {reconcile.THRESHOLD_HALAMAN} halaman")
-    print("=" * 55)
+    print("-" * 55)
 
     # Strategi 1 (expired-based) bisa jalan tanpa scraping
     # Tapi scraping tetap dibutuhkan untuk strategi 2 dan update timestamp

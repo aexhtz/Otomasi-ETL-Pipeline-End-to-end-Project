@@ -39,5 +39,5 @@ jobs:
           SUPABASE_USER: ${{ secrets.SUPABASE_USER }}
           SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
           MAX_HALAMAN: ${{ github.event.inputs.max_halaman || '1' }}
-          REQUEST_DELAY: "0.5"
+          REQUEST_DELAY: ${{ vars.REQUEST_DELAY }}
         run: python pipeline.py || python pipeline.py
