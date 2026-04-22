@@ -26,7 +26,6 @@ MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "1"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
 
-
 # ---- Incremental
 
 def get_existing_job_ids() -> set[str]:
@@ -391,7 +390,7 @@ def main():
     print("-" * 50)
 
     # [E1] Scrape listing
-    scraped_list = listing.get_semua_job_id(max_halaman=MAX_HALAMAN)
+    scraped_list = listing.get_semua_job_id(max_page_limit=MAX_HALAMAN)
     if not scraped_list:
         print("[Pipeline] Tidak ada job ID. Pipeline dihentikan.")
         return
