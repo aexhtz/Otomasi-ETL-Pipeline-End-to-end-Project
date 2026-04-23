@@ -3,39 +3,104 @@ Dijalankan terpisah dari ETL pipeline, cukup sekali seminggu.
 """
 
 import os
-import ETL.Extract.scraper_listing as listing
-import Support.reconciler      as reconcile
+from datetime import datetime
 
-MAX_HALAMAN_REKONSILIASI = int(os.getenv("MAX_HALAMAN_REKONSILIASI", "55"))
+import ETL.Extract.scraper_listing as listing
+import Support.reconciler as reconcile
+from Support.logger import setup_logger
+
+
+# ==============================
+# SETUP LOGGER (SAMA SEPERTI PIPELINE)
+# ==============================
+logger = setup_logger(
+    "reconciler",
+    log_file=f"logs/reconciler/rekonsiliasi.log"
+)
+
+# ==============================
+# CONFIG
+# ==============================
+MAX_HALAMAN_REKONSILIASI = int(
+    os.getenv("MAX_HALAMAN_REKONSILIASI", "55")
+)
+
 
 def main():
-    print("-" * 55)
-    print("  REKONSILIASI — JobStreet")
-    print(f"  MAX_HALAMAN_REKONSILIASI = {MAX_HALAMAN_REKONSILIASI}")
-    print(f"  Threshold strategi 2 = {reconcile.THRESHOLD_HALAMAN} halaman")
-    print("-" * 55)
+    logger.info("reconcile_start", extra={
+        "event": "RECONCILE_START",
+        "max_halaman": MAX_HALAMAN_REKONSILIASI,
+        "threshold_tidak_terlihat": reconcile.THRESHOLD_TIDAK_TERLIHAT,
+        "threshold_halaman": reconcile.THRESHOLD_HALAMAN
+    })
 
-    # Strategi 1 (expired-based) bisa jalan tanpa scraping
-    # Tapi scraping tetap dibutuhkan untuk strategi 2 dan update timestamp
-    print(f"\n[SCRAPE] Mengambil job ID dari {MAX_HALAMAN_REKONSILIASI} halaman...")
-    scraped_list = listing.get_semua_job_id(max_page_limit=MAX_HALAMAN_REKONSILIASI)
+    # ==============================
+    # SCRAPING
+    # ==============================
+    try:
+        scraped_list = listing.get_semua_job_id(
+            max_page_limit=MAX_HALAMAN_REKONSILIASI
+        )
 
+        logger.info("scrape_done", extra={
+            "total_scraped": len(scraped_list)
+        })
+
+    except Exception as e:
+        logger.error("scrape_error", extra={
+            "error": str(e)
+        }, exc_info=True)
+
+        scraped_list = []
+
+    # ==============================
+    # JIKA SCRAPING GAGAL
+    # ==============================
     if not scraped_list:
-        print("[RECONCILE] Scraping gagal — jalankan hanya strategi 1 (expired-based)...")
-        # Tetap jalankan strategi 1 meski scraping gagal
-        expired = reconcile.tandai_expired()
-        print(f"  Expired ditandai: {expired}")
+        logger.warning("scrape_empty_run_strategy_1")
+
+        try:
+            expired = reconcile.tandai_expired()
+
+            logger.info("strategy_1_done", extra={
+                "expired_count": expired
+            })
+
+        except Exception as e:
+            logger.error("strategy_1_error", extra={
+                "error": str(e)
+            }, exc_info=True)
+
         return
 
-    ringkasan = reconcile.rekonsiliasi(scraped_list, max_page_limit=MAX_HALAMAN_REKONSILIASI)
+    # ==============================
+    # REKONSILIASI
+    # ==============================
+    try:
+        ringkasan = reconcile.rekonsiliasi(
+            scraped_list,
+            max_page_limit=MAX_HALAMAN_REKONSILIASI
+        )
 
-    print("\n" + "-" * 55)
-    print("  Rekonsiliasi selesai.")
-    print(f"  Job terlihat hari ini : {ringkasan['total_scraped']}")
-    print(f"  Nonaktif by expired   : {ringkasan['expired_count']}")
-    print(f"  Nonaktif by konsensus  : {ringkasan['konsensus_nonaktif']}")
-    print(f"  Total baru nonaktif   : {ringkasan['total_nonaktif']}")
-    print("-" * 55)
+        logger.info("reconcile_done", extra=ringkasan)
+
+    except Exception as e:
+        logger.error("reconcile_error", extra={
+            "error": str(e)
+        }, exc_info=True)
+
+        return
+
+    # ==============================
+    # SUMMARY
+    # ==============================
+    logger.info("reconcile_summary", extra={
+        "total_scraped": ringkasan["total_scraped"],
+        "expired": ringkasan["expired_count"],
+        "konsensus": ringkasan["konsensus_nonaktif"],
+        "total_nonaktif": ringkasan["total_nonaktif"]
+    })
+
 
 if __name__ == "__main__":
     main()

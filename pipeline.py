@@ -21,10 +21,13 @@ import config.konfigurasi_supabase as konfigurasi
 import ETL.Extract.scraper_listing as listing
 import ETL.Extract.scraper_detail  as detail
 import ETL.Transform.transformer     as transform
+from Support.logger import setup_logger
 
-MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "1"))
+MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "2"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
+
+logger = setup_logger("pipeline", "pipeline")
 
 # ---- Incremental
 
@@ -378,7 +381,6 @@ def simpan_ke_csv(data: list[dict], output_path: str) -> None:
             df.drop(columns=[col], inplace=True)
     df.to_csv(output_path, index=False, encoding="utf-8-sig")
     print(f"  [Load] CSV tersimpan: {output_path} ({len(data)} baris)")
-
 
 # ---- Main pipeline
 

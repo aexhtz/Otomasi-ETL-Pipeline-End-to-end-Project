@@ -1,4 +1,4 @@
-name: Otomasi Pencocokan Data Harian (Rekonsiliasi)
+name: Otomasi Rekonsiliasi Data
 
 on:
   schedule:
@@ -36,3 +36,9 @@ jobs:
           REQUEST_DELAY: ${{ vars.REQUEST_DELAY }}
           MAX_HALAMAN_REKONSILIASI: ${{ vars.MAX_HALAMAN_REKONSILIASI }}
         run: python rekonsiliasi.py || python rekonsiliasi.py
+
+      - name: Upload logging
+        uses: actions/upload-artifact@v4
+        with:
+          name: logging-rekonsiliasi
+          path: logs/reconciler/
