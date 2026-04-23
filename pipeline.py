@@ -27,8 +27,6 @@ MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "2"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
 
-logger = setup_logger("pipeline", "pipeline")
-
 # ---- Incremental
 
 def get_existing_job_ids() -> set[str]:
@@ -449,7 +447,6 @@ def main():
     print(f"  Sudah ada di DB    : {len(job_lama)}")
     print(f"  Baru diproses  : {len(hasil)}")
     print("-" * 50 + "\n")
-
 
 if __name__ == "__main__":
     main()
