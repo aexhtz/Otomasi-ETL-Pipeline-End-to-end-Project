@@ -25,7 +25,7 @@ BASE_URL = "https://id.jobstreet.com"
 LISTING_URL = "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page={page}&sortmode=ListedDate"
 
 MAX_RETRY_PAGE = 2
-MAX_SESSION_RETRY = 3
+MAX_SESSION_RETRY = 999
 TARGET_JOBS_PER_PAGE = 32
 
 
