@@ -12,7 +12,6 @@ from Support.logger import setup_logger
 import Support.deteksi_waktu as detek
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 
-
 # =========================
 # LOGGER SETUP
 # =========================

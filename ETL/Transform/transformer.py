@@ -501,6 +501,7 @@ WORK_ARR_VALID = {
     "onsite"  : "Onsite",  "on-site" : "Onsite",  "kantor"  : "Onsite",
     "remote"  : "Remote",  "wfh"     : "Remote",
     "hybrid"  : "Hybrid",  "flexible": "Hybrid",
+    "jarak-jauh" : "Remote", "jarak jauh" : "Remote",  
 }
 
 def transform_enum(tipe_kerja: str | None, work_arrangement: str | None) -> dict:
@@ -518,14 +519,22 @@ def transform_enum(tipe_kerja: str | None, work_arrangement: str | None) -> dict
     else:
         tipe_std = "Tidak Disebutkan"
 
-    # Work arrangement
+    # --- WORK ARRANGEMENT ---
+    is_remote = False
+
     if work_arrangement:
-        key = work_arrangement.lower().strip()
-        # Cek tiap kata dalam string (bisa "Onsite, Hybrid")
         arr_std_list = []
+
         for bagian in re.split(r"[,;]", work_arrangement):
             bagian_key = bagian.strip().lower()
-            arr_std_list.append(WORK_ARR_VALID.get(bagian_key, bagian.strip().title()))
+            std_val = WORK_ARR_VALID.get(bagian_key, bagian.strip().title())
+
+            # 🔥 DETEKSI REMOTE DI SINI
+            if std_val.lower() == "remote":
+                is_remote = True
+
+            arr_std_list.append(std_val)
+
         arr_std = ", ".join(arr_std_list) if arr_std_list else "Tidak Disebutkan"
     else:
         arr_std = "Tidak Disebutkan"
@@ -533,6 +542,7 @@ def transform_enum(tipe_kerja: str | None, work_arrangement: str | None) -> dict
     return {
         "tipe_kerja_std"      : tipe_std,
         "work_arrangement_std": arr_std,
+        "is_remote"           : is_remote,
     }
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -664,7 +674,7 @@ def transform_klasifikasi(klasifikasi_raw: str | None,
 
     # Fallback
     if not kategori:
-        kategori = "Lainnya"
+        kategori = "Tidak terklasifikasi"
 
     return {
         "kategori_besar"    : kategori,
@@ -725,7 +735,6 @@ def transform_satu_loker(data: dict) -> dict:
     hasil.update({
         "kota_standar"    : l["kota_standar"],
         "provinsi_standar": l["provinsi_standar"],
-        "is_remote"       : l["is_remote"],
     })
 
     # 5. Enum
@@ -733,6 +742,7 @@ def transform_satu_loker(data: dict) -> dict:
     hasil.update({
         "tipe_kerja_std"      : e["tipe_kerja_std"],
         "work_arrangement_std": e["work_arrangement_std"],
+        "is_remote": e["is_remote"],
     })
 
     # 6. Durasi
