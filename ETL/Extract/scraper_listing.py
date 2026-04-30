@@ -12,6 +12,9 @@ from Support.logger import setup_logger
 import Support.deteksi_waktu as detek
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 
+# Untuk notifikasi ke Discord
+WEBHOOK_URL = "https://discord.com/api/webhooks/1498665477294260265/AuedG1cd4q1qlriiU4T0SwtWzZ_Ra03PonsFhXsaVkwzuqhJun9jBXhdQYgttkaJDmtu"
+
 # =========================
 # LOGGER SETUP
 # =========================
