@@ -35,6 +35,7 @@ jobs:
           SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
           REQUEST_DELAY: ${{ vars.REQUEST_DELAY }}
           MAX_HALAMAN_REKONSILIASI: ${{ vars.MAX_HALAMAN_REKONSILIASI }}
+          DISCORD_WEBHOOK_URL: ${{ vars.DISCORD_WEBHOOK_URL }}
         run: python rekonsiliasi.py || python rekonsiliasi.py
 
       - name: Upload logging
