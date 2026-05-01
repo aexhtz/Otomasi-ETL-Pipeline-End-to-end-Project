@@ -16,6 +16,7 @@ Alur per run:
 """
 
 import os
+import sys
 import pandas as pd
 import config.konfigurasi_supabase as konfigurasi
 import ETL.Extract.scraper_listing as listing
@@ -26,6 +27,14 @@ from Support.logger import setup_logger
 MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "2"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+os.makedirs("logs/pipeline", exist_ok=True)
+logger = setup_logger(
+    "pipeline",
+    log_file="logs/pipeline/pipeline.log",
+    discord_webhook_url=DISCORD_WEBHOOK_URL,
+)
 
 # ---- Incremental
 
@@ -449,4 +458,11 @@ def main():
     print("-" * 50 + "\n")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n[Pipeline] Dihentikan manual oleh user.")
+        sys.exit(130)
+    except Exception:
+        logger.exception("[Pipeline] Runtime stop karena error")
+        raise

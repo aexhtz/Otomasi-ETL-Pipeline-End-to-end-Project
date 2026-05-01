@@ -7,20 +7,27 @@ Versi SUPER STABIL + FORCE MODE 32 (anti pagination chaos)
 import random
 import re
 import time
-import logging
+import os
+from datetime import datetime
+from pathlib import Path
+from dotenv import load_dotenv
 from Support.logger import setup_logger
 import Support.deteksi_waktu as detek
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 
-# Untuk notifikasi ke Discord
-WEBHOOK_URL = "https://discord.com/api/webhooks/1498665477294260265/AuedG1cd4q1qlriiU4T0SwtWzZ_Ra03PonsFhXsaVkwzuqhJun9jBXhdQYgttkaJDmtu"
+load_dotenv()
 
 # =========================
 # LOGGER SETUP
 # =========================
+Path("logs/pipeline").mkdir(parents=True, exist_ok=True)
+DEBUG_DIR = Path("logs/pipeline/debug")
+DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+
 logger = setup_logger(
     "scraper_listing",
-    log_file="logs/pipeline/scraper_listing.log"
+    log_file="logs/pipeline/scraper_listing.log",
+    discord_webhook_url=os.getenv("DISCORD_WEBHOOK_URL"),
 )
 
 BASE_URL = "https://id.jobstreet.com"
@@ -29,6 +36,47 @@ LISTING_URL = "https://id.jobstreet.com/id/jobs-in-information-communication-tec
 MAX_RETRY_PAGE = 2
 MAX_SESSION_RETRY = 999
 TARGET_JOBS_PER_PAGE = 32
+
+
+def capture_debug_artifacts(page, event: str, page_num: int | None = None, session_attempt: int | None = None) -> dict:
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe_event = re.sub(r"[^a-zA-Z0-9_-]+", "_", event)
+    page_label = f"page{page_num}" if page_num is not None else "page_unknown"
+    prefix = f"{timestamp}_{safe_event}_{page_label}"
+
+    debug = {
+        "debug_event": event,
+        "debug_page": page_num,
+        "session_attempt": session_attempt,
+    }
+
+    try:
+        debug["current_url"] = page.url
+    except Exception as e:
+        debug["current_url_error"] = str(e)
+
+    try:
+        debug["page_title"] = page.title()
+    except Exception as e:
+        debug["page_title_error"] = str(e)
+
+    try:
+        screenshot_path = DEBUG_DIR / f"{prefix}.png"
+        page.screenshot(path=str(screenshot_path), full_page=True)
+        debug["screenshot_path"] = str(screenshot_path)
+    except Exception as e:
+        debug["screenshot_error"] = str(e)
+
+    try:
+        html_path = DEBUG_DIR / f"{prefix}.html"
+        html = page.content()
+        html_path.write_text(html, encoding="utf-8")
+        debug["html_path"] = str(html_path)
+        debug["html_preview"] = re.sub(r"\s+", " ", html[:500]).strip()
+    except Exception as e:
+        debug["html_error"] = str(e)
+
+    return debug
 
 
 def ekstrak_job_id_dari_url(url: str) -> str | None:
@@ -66,6 +114,7 @@ def get_semua_job_id(max_page_limit: int = 100) -> list[dict]:
                 "attempt": session_retry + 1
             })
 
+            session_attempt = session_retry + 1
             print(f"\n[SESSION] Percobaan ke-{session_retry + 1}")
 
             browser = p.chromium.launch(
@@ -133,8 +182,22 @@ def get_semua_job_id(max_page_limit: int = 100) -> list[dict]:
                 print("   - [OK] Mode valid → lanjut scraping")
 
             except Exception as e:
-                logger.error("page1_validation_failed", extra={"error": str(e)}, exc_info=True)
+                debug = capture_debug_artifacts(
+                    page,
+                    "page1_validation_failed",
+                    page_num=1,
+                    session_attempt=session_attempt,
+                )
+                logger.error(
+                    "page1_validation_failed",
+                    extra={"error": str(e), **debug},
+                    exc_info=True,
+                )
                 print(f"   - [ERROR] Validasi halaman 1 gagal: {e}")
+                if debug.get("screenshot_path"):
+                    print(f"   - [DEBUG] Screenshot tersimpan: {debug['screenshot_path']}")
+                if debug.get("html_path"):
+                    print(f"   - [DEBUG] HTML tersimpan: {debug['html_path']}")
 
                 browser.close()
                 session_retry += 1
@@ -155,7 +218,17 @@ def get_semua_job_id(max_page_limit: int = 100) -> list[dict]:
                     page.goto(LISTING_URL.format(page=page_num), wait_until="domcontentloaded", timeout=30000)
                     time.sleep(random.uniform(0.8, 1.2))
                 except Exception as e:
-                    logger.error("page_load_failed", extra={"page": page_num, "error": str(e)})
+                    debug = capture_debug_artifacts(
+                        page,
+                        "page_load_failed",
+                        page_num=page_num,
+                        session_attempt=session_attempt,
+                    )
+                    logger.error(
+                        "page_load_failed",
+                        extra={"page": page_num, "error": str(e), **debug},
+                        exc_info=True,
+                    )
                     break
 
                 retry_count = 0
@@ -167,7 +240,7 @@ def get_semua_job_id(max_page_limit: int = 100) -> list[dict]:
                         success_load = True
                         break
 
-                    except PlaywrightTimeout:
+                    except PlaywrightTimeout as e:
                         retry_count += 1
                         logger.warning("retry_selector", extra={
                             "page": page_num,
@@ -175,7 +248,26 @@ def get_semua_job_id(max_page_limit: int = 100) -> list[dict]:
                         })
 
                         if retry_count > MAX_RETRY_PAGE:
-                            logger.warning("page_failed")
+                            debug = capture_debug_artifacts(
+                                page,
+                                "page_selector_failed",
+                                page_num=page_num,
+                                session_attempt=session_attempt,
+                            )
+                            logger.error(
+                                "page_selector_failed",
+                                extra={
+                                    "page": page_num,
+                                    "attempt": retry_count,
+                                    "error": str(e),
+                                    **debug,
+                                },
+                                exc_info=True,
+                            )
+                            if debug.get("screenshot_path"):
+                                print(f"   - [DEBUG] Screenshot tersimpan: {debug['screenshot_path']}")
+                            if debug.get("html_path"):
+                                print(f"   - [DEBUG] HTML tersimpan: {debug['html_path']}")
                             no_new_counter += 1
                             break
 

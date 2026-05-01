@@ -3,3 +3,8 @@
 {"timestamp": "2026-04-23T06:07:13.244527+00:00", "level": "INFO", "module": "reconciler", "message": "scrape_done"}
 {"timestamp": "2026-04-23T06:07:14.460426+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_done"}
 {"timestamp": "2026-04-23T06:07:14.460426+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_summary"}
+{"timestamp": "2026-05-01T11:12:32.910062+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_start", "event": "RECONCILE_START", "max_halaman": 999, "threshold_tidak_terlihat": 2, "threshold_halaman": 999}
+{"timestamp": "2026-05-01T11:22:57.152372+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_start", "event": "RECONCILE_START", "max_halaman": 999, "threshold_tidak_terlihat": 2, "threshold_halaman": 999}
+{"timestamp": "2026-05-01T11:50:50.731254+00:00", "level": "INFO", "module": "reconciler", "message": "scrape_done", "total_scraped": 3123}
+{"timestamp": "2026-05-01T11:50:53.106345+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_done", "total_scraped": 3123, "expired_count": 1, "tidak_muncul_count": 38, "konsensus_nonaktif": 32, "total_nonaktif": 33}
+{"timestamp": "2026-05-01T11:50:53.113890+00:00", "level": "INFO", "module": "reconciler", "message": "reconcile_summary", "total_scraped": 3123, "expired": 1, "konsensus": 32, "total_nonaktif": 33}

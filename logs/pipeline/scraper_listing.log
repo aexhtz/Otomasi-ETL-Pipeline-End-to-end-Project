@@ -762,3 +762,306 @@
 {"timestamp": "2026-04-26T00:53:45.052407+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta"}
 {"timestamp": "2026-04-26T00:53:45.054147+00:00", "level": "WARNING", "module": "scraper_listing", "message": "stop_max_page_limit"}
 {"timestamp": "2026-04-26T00:53:45.324346+00:00", "level": "INFO", "module": "scraper_listing", "message": "scrape_done"}
+{"timestamp": "2026-05-01T10:54:14.558153+00:00", "level": "INFO", "module": "scraper_listing", "message": "scrape_start"}
+{"timestamp": "2026-05-01T10:55:03.003900+00:00", "level": "INFO", "module": "scraper_listing", "message": "session_start"}
+{"timestamp": "2026-05-01T10:55:22.913857+00:00", "level": "INFO", "module": "scraper_listing", "message": "init_homepage"}
+{"timestamp": "2026-05-01T10:55:30.349205+00:00", "level": "INFO", "module": "scraper_listing", "message": "validate_page_1"}
+{"timestamp": "2026-05-01T10:55:40.713236+00:00", "level": "ERROR", "module": "scraper_listing", "message": "page1_validation_failed", "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\ETL\\Extract\\scraper_listing.py\", line 112, in get_semua_job_id\n    page.wait_for_selector('article[data-automation=\"normalJob\"]', timeout=8000)\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 8217, in wait_for_selector\n    self._sync(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 419, in wait_for_selector\n    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 369, in wait_for_selector\n    await self._channel.send(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n"}
+{"timestamp": "2026-05-01T10:55:42.867923+00:00", "level": "INFO", "module": "scraper_listing", "message": "session_start"}
+{"timestamp": "2026-05-01T10:55:46.141214+00:00", "level": "INFO", "module": "scraper_listing", "message": "init_homepage"}
+{"timestamp": "2026-05-01T10:55:59.837535+00:00", "level": "INFO", "module": "scraper_listing", "message": "validate_page_1"}
+{"timestamp": "2026-05-01T10:56:03.384059+00:00", "level": "INFO", "module": "scraper_listing", "message": "page1_check"}
+{"timestamp": "2026-05-01T10:56:03.386988+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch"}
+{"timestamp": "2026-05-01T10:56:12.523009+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result"}
+{"timestamp": "2026-05-01T10:56:21.236420+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta"}
+{"timestamp": "2026-05-01T10:56:22.348740+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch"}
+{"timestamp": "2026-05-01T10:56:26.742705+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result"}
+{"timestamp": "2026-05-01T10:56:27.994378+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta"}
+{"timestamp": "2026-05-01T10:56:27.994378+00:00", "level": "WARNING", "module": "scraper_listing", "message": "stop_max_page_limit"}
+{"timestamp": "2026-05-01T10:56:28.229122+00:00", "level": "INFO", "module": "scraper_listing", "message": "scrape_done"}
+{"timestamp": "2026-05-01T11:27:57.298480+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 14, "job_count": 32}
+{"timestamp": "2026-05-01T11:27:59.335002+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 14, "new_jobs": 32, "total_unique": 448}
+{"timestamp": "2026-05-01T11:28:00.711618+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 15}
+{"timestamp": "2026-05-01T11:28:23.206139+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 15, "job_count": 32}
+{"timestamp": "2026-05-01T11:28:24.175689+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 15, "new_jobs": 32, "total_unique": 480}
+{"timestamp": "2026-05-01T11:28:25.094320+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 16}
+{"timestamp": "2026-05-01T11:28:28.152126+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 16, "job_count": 32}
+{"timestamp": "2026-05-01T11:28:30.664953+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 16, "new_jobs": 32, "total_unique": 512}
+{"timestamp": "2026-05-01T11:28:31.525369+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 17}
+{"timestamp": "2026-05-01T11:28:41.574278+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 17, "attempt": 1}
+{"timestamp": "2026-05-01T11:29:00.398854+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 17, "job_count": 32}
+{"timestamp": "2026-05-01T11:29:01.175508+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 17, "new_jobs": 32, "total_unique": 544}
+{"timestamp": "2026-05-01T11:29:02.625813+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 18}
+{"timestamp": "2026-05-01T11:29:04.880398+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 18, "job_count": 32}
+{"timestamp": "2026-05-01T11:29:16.509695+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 18, "new_jobs": 32, "total_unique": 576}
+{"timestamp": "2026-05-01T11:29:17.643450+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 19}
+{"timestamp": "2026-05-01T11:29:24.786134+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 19, "job_count": 32}
+{"timestamp": "2026-05-01T11:29:25.957459+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 19, "new_jobs": 32, "total_unique": 608}
+{"timestamp": "2026-05-01T11:29:26.833923+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 20}
+{"timestamp": "2026-05-01T11:29:30.199269+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 20, "job_count": 32}
+{"timestamp": "2026-05-01T11:29:31.995323+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 20, "new_jobs": 32, "total_unique": 640}
+{"timestamp": "2026-05-01T11:29:33.243459+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 21}
+{"timestamp": "2026-05-01T11:29:43.170052+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 21, "attempt": 1}
+{"timestamp": "2026-05-01T11:30:04.303420+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 21, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:05.089273+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 21, "new_jobs": 32, "total_unique": 672}
+{"timestamp": "2026-05-01T11:30:06.118544+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 22}
+{"timestamp": "2026-05-01T11:30:08.576775+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 22, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:10.225053+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 22, "new_jobs": 32, "total_unique": 704}
+{"timestamp": "2026-05-01T11:30:11.453970+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 23}
+{"timestamp": "2026-05-01T11:30:19.520420+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 23, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:27.573614+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 23, "new_jobs": 32, "total_unique": 736}
+{"timestamp": "2026-05-01T11:30:28.589556+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 24}
+{"timestamp": "2026-05-01T11:30:37.091381+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 24, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:37.950870+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 24, "new_jobs": 32, "total_unique": 768}
+{"timestamp": "2026-05-01T11:30:39.300181+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 25}
+{"timestamp": "2026-05-01T11:30:41.753503+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 25, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:43.333902+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 25, "new_jobs": 32, "total_unique": 800}
+{"timestamp": "2026-05-01T11:30:44.696077+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 26}
+{"timestamp": "2026-05-01T11:30:47.310737+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 26, "job_count": 32}
+{"timestamp": "2026-05-01T11:30:59.086985+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 26, "new_jobs": 32, "total_unique": 832}
+{"timestamp": "2026-05-01T11:31:00.252473+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 27}
+{"timestamp": "2026-05-01T11:31:12.758349+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 27, "job_count": 32}
+{"timestamp": "2026-05-01T11:31:13.663966+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 27, "new_jobs": 32, "total_unique": 864}
+{"timestamp": "2026-05-01T11:31:14.807713+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 28}
+{"timestamp": "2026-05-01T11:31:17.665123+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 28, "job_count": 32}
+{"timestamp": "2026-05-01T11:31:19.821799+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 28, "new_jobs": 32, "total_unique": 896}
+{"timestamp": "2026-05-01T11:31:21.184136+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 29}
+{"timestamp": "2026-05-01T11:31:34.567980+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 29, "attempt": 1}
+{"timestamp": "2026-05-01T11:31:48.755080+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 29, "job_count": 32}
+{"timestamp": "2026-05-01T11:31:49.755267+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 29, "new_jobs": 32, "total_unique": 928}
+{"timestamp": "2026-05-01T11:31:50.566679+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 30}
+{"timestamp": "2026-05-01T11:31:54.045567+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 30, "job_count": 32}
+{"timestamp": "2026-05-01T11:31:55.769373+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 30, "new_jobs": 32, "total_unique": 960}
+{"timestamp": "2026-05-01T11:31:57.238032+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 31}
+{"timestamp": "2026-05-01T11:32:09.358631+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 31, "attempt": 1}
+{"timestamp": "2026-05-01T11:32:30.959248+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 31, "job_count": 32}
+{"timestamp": "2026-05-01T11:32:32.040485+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 31, "new_jobs": 32, "total_unique": 992}
+{"timestamp": "2026-05-01T11:32:32.923928+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 32}
+{"timestamp": "2026-05-01T11:32:35.303040+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 32, "job_count": 32}
+{"timestamp": "2026-05-01T11:32:36.956235+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 32, "new_jobs": 32, "total_unique": 1024}
+{"timestamp": "2026-05-01T11:32:38.122863+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 33}
+{"timestamp": "2026-05-01T11:32:40.737121+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 33, "job_count": 32}
+{"timestamp": "2026-05-01T11:32:42.095618+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 33, "new_jobs": 32, "total_unique": 1056}
+{"timestamp": "2026-05-01T11:32:43.580703+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 34}
+{"timestamp": "2026-05-01T11:32:53.850049+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 34, "attempt": 1}
+{"timestamp": "2026-05-01T11:33:17.332400+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 34, "job_count": 32}
+{"timestamp": "2026-05-01T11:33:18.104965+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 34, "new_jobs": 32, "total_unique": 1088}
+{"timestamp": "2026-05-01T11:33:19.430646+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 35}
+{"timestamp": "2026-05-01T11:33:24.859230+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 35, "job_count": 32}
+{"timestamp": "2026-05-01T11:33:26.899253+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 35, "new_jobs": 32, "total_unique": 1120}
+{"timestamp": "2026-05-01T11:33:28.018505+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 36}
+{"timestamp": "2026-05-01T11:33:41.369840+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 36, "attempt": 1}
+{"timestamp": "2026-05-01T11:33:57.852242+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 36, "job_count": 32}
+{"timestamp": "2026-05-01T11:33:58.941056+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 36, "new_jobs": 32, "total_unique": 1152}
+{"timestamp": "2026-05-01T11:34:00.218030+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 37}
+{"timestamp": "2026-05-01T11:34:03.202439+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 37, "job_count": 32}
+{"timestamp": "2026-05-01T11:34:05.062617+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 37, "new_jobs": 32, "total_unique": 1184}
+{"timestamp": "2026-05-01T11:34:06.457075+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 38}
+{"timestamp": "2026-05-01T11:34:17.601772+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 38, "job_count": 32}
+{"timestamp": "2026-05-01T11:34:25.726475+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 38, "new_jobs": 32, "total_unique": 1216}
+{"timestamp": "2026-05-01T11:34:26.549782+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 39}
+{"timestamp": "2026-05-01T11:34:39.237214+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 39, "job_count": 32}
+{"timestamp": "2026-05-01T11:34:40.089497+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 39, "new_jobs": 32, "total_unique": 1248}
+{"timestamp": "2026-05-01T11:34:41.121999+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 40}
+{"timestamp": "2026-05-01T11:34:43.752522+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 40, "job_count": 32}
+{"timestamp": "2026-05-01T11:34:45.203860+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 40, "new_jobs": 32, "total_unique": 1280}
+{"timestamp": "2026-05-01T11:34:46.209853+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 41}
+{"timestamp": "2026-05-01T11:34:48.927106+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 41, "job_count": 32}
+{"timestamp": "2026-05-01T11:34:50.629914+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 41, "new_jobs": 32, "total_unique": 1312}
+{"timestamp": "2026-05-01T11:34:51.831028+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 42}
+{"timestamp": "2026-05-01T11:35:15.294753+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 42, "job_count": 32}
+{"timestamp": "2026-05-01T11:35:20.925199+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 42, "new_jobs": 32, "total_unique": 1344}
+{"timestamp": "2026-05-01T11:35:22.080854+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 43}
+{"timestamp": "2026-05-01T11:35:25.016424+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 43, "job_count": 32}
+{"timestamp": "2026-05-01T11:35:26.994426+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 43, "new_jobs": 32, "total_unique": 1376}
+{"timestamp": "2026-05-01T11:35:28.282362+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 44}
+{"timestamp": "2026-05-01T11:35:31.553032+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 44, "job_count": 32}
+{"timestamp": "2026-05-01T11:35:33.214020+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 44, "new_jobs": 32, "total_unique": 1408}
+{"timestamp": "2026-05-01T11:35:34.423838+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 45}
+{"timestamp": "2026-05-01T11:35:47.815164+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 45, "attempt": 1}
+{"timestamp": "2026-05-01T11:36:07.978843+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 45, "job_count": 32}
+{"timestamp": "2026-05-01T11:36:08.689545+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 45, "new_jobs": 32, "total_unique": 1440}
+{"timestamp": "2026-05-01T11:36:09.657583+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 46}
+{"timestamp": "2026-05-01T11:36:12.479349+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 46, "job_count": 32}
+{"timestamp": "2026-05-01T11:36:14.277694+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 46, "new_jobs": 32, "total_unique": 1472}
+{"timestamp": "2026-05-01T11:36:15.549948+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 47}
+{"timestamp": "2026-05-01T11:36:18.845481+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 47, "job_count": 32}
+{"timestamp": "2026-05-01T11:36:20.624175+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 47, "new_jobs": 32, "total_unique": 1504}
+{"timestamp": "2026-05-01T11:36:22.096448+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 48}
+{"timestamp": "2026-05-01T11:36:44.817327+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 48, "attempt": 1}
+{"timestamp": "2026-05-01T11:36:57.745038+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 48, "job_count": 32}
+{"timestamp": "2026-05-01T11:36:58.674209+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 48, "new_jobs": 32, "total_unique": 1536}
+{"timestamp": "2026-05-01T11:37:00.065922+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 49}
+{"timestamp": "2026-05-01T11:37:02.778608+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 49, "job_count": 32}
+{"timestamp": "2026-05-01T11:37:04.673393+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 49, "new_jobs": 32, "total_unique": 1568}
+{"timestamp": "2026-05-01T11:37:05.779257+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 50}
+{"timestamp": "2026-05-01T11:37:16.284187+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 50, "job_count": 32}
+{"timestamp": "2026-05-01T11:37:22.781232+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 50, "new_jobs": 32, "total_unique": 1600}
+{"timestamp": "2026-05-01T11:37:24.122075+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 51}
+{"timestamp": "2026-05-01T11:37:35.790964+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 51, "job_count": 32}
+{"timestamp": "2026-05-01T11:37:36.694781+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 51, "new_jobs": 32, "total_unique": 1632}
+{"timestamp": "2026-05-01T11:37:37.967958+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 52}
+{"timestamp": "2026-05-01T11:37:40.655124+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 52, "job_count": 32}
+{"timestamp": "2026-05-01T11:37:42.209190+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 52, "new_jobs": 32, "total_unique": 1664}
+{"timestamp": "2026-05-01T11:37:43.214706+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 53}
+{"timestamp": "2026-05-01T11:37:52.908077+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 53, "attempt": 1}
+{"timestamp": "2026-05-01T11:38:08.157780+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 53, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:09.000013+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 53, "new_jobs": 32, "total_unique": 1696}
+{"timestamp": "2026-05-01T11:38:10.473924+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 54}
+{"timestamp": "2026-05-01T11:38:12.889853+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 54, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:14.388561+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 54, "new_jobs": 32, "total_unique": 1728}
+{"timestamp": "2026-05-01T11:38:15.831382+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 55}
+{"timestamp": "2026-05-01T11:38:29.230116+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 55, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:35.443937+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 55, "new_jobs": 32, "total_unique": 1760}
+{"timestamp": "2026-05-01T11:38:36.854204+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 56}
+{"timestamp": "2026-05-01T11:38:40.251437+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 56, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:41.841772+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 56, "new_jobs": 32, "total_unique": 1792}
+{"timestamp": "2026-05-01T11:38:43.263253+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 57}
+{"timestamp": "2026-05-01T11:38:45.625139+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 57, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:47.107348+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 57, "new_jobs": 32, "total_unique": 1824}
+{"timestamp": "2026-05-01T11:38:47.957492+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 58}
+{"timestamp": "2026-05-01T11:38:50.701527+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 58, "job_count": 32}
+{"timestamp": "2026-05-01T11:38:52.264905+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 58, "new_jobs": 32, "total_unique": 1856}
+{"timestamp": "2026-05-01T11:38:53.422769+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 59}
+{"timestamp": "2026-05-01T11:39:07.698350+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 59, "attempt": 1}
+{"timestamp": "2026-05-01T11:39:24.775910+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 59, "job_count": 32}
+{"timestamp": "2026-05-01T11:39:25.745108+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 59, "new_jobs": 32, "total_unique": 1888}
+{"timestamp": "2026-05-01T11:39:26.943466+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 60}
+{"timestamp": "2026-05-01T11:39:31.021610+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 60, "job_count": 32}
+{"timestamp": "2026-05-01T11:39:32.805957+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 60, "new_jobs": 32, "total_unique": 1920}
+{"timestamp": "2026-05-01T11:39:33.880320+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 61}
+{"timestamp": "2026-05-01T11:39:43.903658+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 61, "attempt": 1}
+{"timestamp": "2026-05-01T11:40:06.038651+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 61, "job_count": 32}
+{"timestamp": "2026-05-01T11:40:07.075878+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 61, "new_jobs": 32, "total_unique": 1952}
+{"timestamp": "2026-05-01T11:40:08.102889+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 62}
+{"timestamp": "2026-05-01T11:40:10.481731+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 62, "job_count": 32}
+{"timestamp": "2026-05-01T11:40:12.141421+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 62, "new_jobs": 32, "total_unique": 1984}
+{"timestamp": "2026-05-01T11:40:13.469239+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 63}
+{"timestamp": "2026-05-01T11:40:26.132024+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 63, "job_count": 32}
+{"timestamp": "2026-05-01T11:40:33.075356+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 63, "new_jobs": 32, "total_unique": 2016}
+{"timestamp": "2026-05-01T11:40:34.056723+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 64}
+{"timestamp": "2026-05-01T11:40:38.401976+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 64, "job_count": 32}
+{"timestamp": "2026-05-01T11:40:39.735516+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 64, "new_jobs": 32, "total_unique": 2048}
+{"timestamp": "2026-05-01T11:40:41.177674+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 65}
+{"timestamp": "2026-05-01T11:40:43.765040+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 65, "job_count": 32}
+{"timestamp": "2026-05-01T11:40:45.231087+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 65, "new_jobs": 32, "total_unique": 2080}
+{"timestamp": "2026-05-01T11:40:46.617220+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 66}
+{"timestamp": "2026-05-01T11:40:50.473788+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 66, "job_count": 32}
+{"timestamp": "2026-05-01T11:41:01.527258+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 66, "new_jobs": 32, "total_unique": 2112}
+{"timestamp": "2026-05-01T11:41:02.510152+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 67}
+{"timestamp": "2026-05-01T11:41:15.398835+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 67, "job_count": 32}
+{"timestamp": "2026-05-01T11:41:16.411691+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 67, "new_jobs": 32, "total_unique": 2144}
+{"timestamp": "2026-05-01T11:41:17.645808+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 68}
+{"timestamp": "2026-05-01T11:41:20.237445+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 68, "job_count": 32}
+{"timestamp": "2026-05-01T11:41:22.214475+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 68, "new_jobs": 32, "total_unique": 2176}
+{"timestamp": "2026-05-01T11:41:23.505667+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 69}
+{"timestamp": "2026-05-01T11:41:26.415204+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 69, "job_count": 32}
+{"timestamp": "2026-05-01T11:41:28.297727+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 69, "new_jobs": 32, "total_unique": 2208}
+{"timestamp": "2026-05-01T11:41:29.655404+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 70}
+{"timestamp": "2026-05-01T11:41:43.125231+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 70, "attempt": 1}
+{"timestamp": "2026-05-01T11:41:59.138096+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 70, "job_count": 32}
+{"timestamp": "2026-05-01T11:41:59.941890+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 70, "new_jobs": 32, "total_unique": 2240}
+{"timestamp": "2026-05-01T11:42:01.109866+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 71}
+{"timestamp": "2026-05-01T11:42:04.035752+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 71, "job_count": 32}
+{"timestamp": "2026-05-01T11:42:05.741313+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 71, "new_jobs": 32, "total_unique": 2272}
+{"timestamp": "2026-05-01T11:42:06.749971+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 72}
+{"timestamp": "2026-05-01T11:42:13.896975+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 72, "job_count": 32}
+{"timestamp": "2026-05-01T11:42:23.672808+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 72, "new_jobs": 32, "total_unique": 2304}
+{"timestamp": "2026-05-01T11:42:24.851515+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 73}
+{"timestamp": "2026-05-01T11:42:36.055077+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 73, "job_count": 32}
+{"timestamp": "2026-05-01T11:42:37.047429+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 73, "new_jobs": 32, "total_unique": 2336}
+{"timestamp": "2026-05-01T11:42:38.440912+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 74}
+{"timestamp": "2026-05-01T11:42:40.891849+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 74, "job_count": 32}
+{"timestamp": "2026-05-01T11:42:42.607215+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 74, "new_jobs": 32, "total_unique": 2368}
+{"timestamp": "2026-05-01T11:42:43.632901+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 75}
+{"timestamp": "2026-05-01T11:42:46.739735+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 75, "job_count": 32}
+{"timestamp": "2026-05-01T11:42:48.572902+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 75, "new_jobs": 32, "total_unique": 2400}
+{"timestamp": "2026-05-01T11:42:49.753568+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 76}
+{"timestamp": "2026-05-01T11:43:04.555466+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 76, "attempt": 1}
+{"timestamp": "2026-05-01T11:43:18.789505+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 76, "job_count": 32}
+{"timestamp": "2026-05-01T11:43:19.574525+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 76, "new_jobs": 32, "total_unique": 2432}
+{"timestamp": "2026-05-01T11:43:20.618633+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 77}
+{"timestamp": "2026-05-01T11:43:23.392304+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 77, "job_count": 32}
+{"timestamp": "2026-05-01T11:43:25.300986+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 77, "new_jobs": 32, "total_unique": 2464}
+{"timestamp": "2026-05-01T11:43:26.489004+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 78}
+{"timestamp": "2026-05-01T11:43:29.405590+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 78, "job_count": 32}
+{"timestamp": "2026-05-01T11:43:31.042532+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 78, "new_jobs": 32, "total_unique": 2496}
+{"timestamp": "2026-05-01T11:43:32.549329+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 79}
+{"timestamp": "2026-05-01T11:43:46.188699+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 79, "attempt": 1}
+{"timestamp": "2026-05-01T11:44:02.182751+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 79, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:03.144091+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 79, "new_jobs": 32, "total_unique": 2528}
+{"timestamp": "2026-05-01T11:44:04.002786+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 80}
+{"timestamp": "2026-05-01T11:44:06.988332+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 80, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:08.524519+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 80, "new_jobs": 32, "total_unique": 2560}
+{"timestamp": "2026-05-01T11:44:09.927998+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 81}
+{"timestamp": "2026-05-01T11:44:12.759562+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 81, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:14.636418+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 81, "new_jobs": 32, "total_unique": 2592}
+{"timestamp": "2026-05-01T11:44:15.620890+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 82}
+{"timestamp": "2026-05-01T11:44:39.601965+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 82, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:44.224266+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 82, "new_jobs": 32, "total_unique": 2624}
+{"timestamp": "2026-05-01T11:44:45.670550+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 83}
+{"timestamp": "2026-05-01T11:44:48.225301+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 83, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:49.816051+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 83, "new_jobs": 32, "total_unique": 2656}
+{"timestamp": "2026-05-01T11:44:51.006247+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 84}
+{"timestamp": "2026-05-01T11:44:53.836653+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 84, "job_count": 32}
+{"timestamp": "2026-05-01T11:44:55.253182+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 84, "new_jobs": 32, "total_unique": 2688}
+{"timestamp": "2026-05-01T11:44:56.076713+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 85}
+{"timestamp": "2026-05-01T11:45:09.600083+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 85, "attempt": 1}
+{"timestamp": "2026-05-01T11:45:24.523189+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 85, "job_count": 32}
+{"timestamp": "2026-05-01T11:45:25.243348+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 85, "new_jobs": 32, "total_unique": 2720}
+{"timestamp": "2026-05-01T11:45:26.637333+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 86}
+{"timestamp": "2026-05-01T11:45:29.387054+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 86, "job_count": 32}
+{"timestamp": "2026-05-01T11:45:31.218858+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 86, "new_jobs": 32, "total_unique": 2752}
+{"timestamp": "2026-05-01T11:45:32.416907+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 87}
+{"timestamp": "2026-05-01T11:45:36.212045+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 87, "job_count": 32}
+{"timestamp": "2026-05-01T11:45:48.048312+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 87, "new_jobs": 32, "total_unique": 2784}
+{"timestamp": "2026-05-01T11:45:49.130349+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 88}
+{"timestamp": "2026-05-01T11:46:06.384502+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 88, "job_count": 32}
+{"timestamp": "2026-05-01T11:46:07.304254+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 88, "new_jobs": 32, "total_unique": 2816}
+{"timestamp": "2026-05-01T11:46:08.642114+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 89}
+{"timestamp": "2026-05-01T11:46:11.136953+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 89, "job_count": 32}
+{"timestamp": "2026-05-01T11:46:12.617868+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 89, "new_jobs": 32, "total_unique": 2848}
+{"timestamp": "2026-05-01T11:46:13.751243+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 90}
+{"timestamp": "2026-05-01T11:46:16.439989+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 90, "job_count": 32}
+{"timestamp": "2026-05-01T11:46:17.733458+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 90, "new_jobs": 32, "total_unique": 2880}
+{"timestamp": "2026-05-01T11:46:19.190051+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 91}
+{"timestamp": "2026-05-01T11:46:22.387284+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 91, "job_count": 32}
+{"timestamp": "2026-05-01T11:46:28.210970+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 91, "new_jobs": 32, "total_unique": 2912}
+{"timestamp": "2026-05-01T11:46:29.484400+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 92}
+{"timestamp": "2026-05-01T11:46:50.691130+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 92, "job_count": 32}
+{"timestamp": "2026-05-01T11:46:56.382971+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 92, "new_jobs": 32, "total_unique": 2944}
+{"timestamp": "2026-05-01T11:46:57.471017+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 93}
+{"timestamp": "2026-05-01T11:47:00.514712+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 93, "job_count": 32}
+{"timestamp": "2026-05-01T11:47:02.269322+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 93, "new_jobs": 32, "total_unique": 2976}
+{"timestamp": "2026-05-01T11:47:03.247476+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 94}
+{"timestamp": "2026-05-01T11:47:06.165950+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 94, "job_count": 32}
+{"timestamp": "2026-05-01T11:47:07.650776+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 94, "new_jobs": 32, "total_unique": 3008}
+{"timestamp": "2026-05-01T11:47:08.544729+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 95}
+{"timestamp": "2026-05-01T11:47:21.747942+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 95, "job_count": 32}
+{"timestamp": "2026-05-01T11:47:28.844042+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 95, "new_jobs": 32, "total_unique": 3040}
+{"timestamp": "2026-05-01T11:47:29.712363+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 96}
+{"timestamp": "2026-05-01T11:47:36.497384+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 96, "job_count": 32}
+{"timestamp": "2026-05-01T11:47:37.759806+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 96, "new_jobs": 32, "total_unique": 3072}
+{"timestamp": "2026-05-01T11:47:39.165228+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 97}
+{"timestamp": "2026-05-01T11:47:41.678667+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 97, "job_count": 32}
+{"timestamp": "2026-05-01T11:47:43.131501+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 97, "new_jobs": 32, "total_unique": 3104}
+{"timestamp": "2026-05-01T11:47:43.965257+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 98}
+{"timestamp": "2026-05-01T11:47:46.078346+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_result", "page": 98, "job_count": 19}
+{"timestamp": "2026-05-01T11:47:47.299033+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_delta", "page": 98, "new_jobs": 19, "total_unique": 3123}
+{"timestamp": "2026-05-01T11:47:48.573520+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 99}
+{"timestamp": "2026-05-01T11:47:58.293489+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 99, "attempt": 1}
+{"timestamp": "2026-05-01T11:48:21.400251+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 99, "attempt": 2}
+{"timestamp": "2026-05-01T11:48:39.497274+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 99, "attempt": 3}
+{"timestamp": "2026-05-01T11:48:45.190802+00:00", "level": "ERROR", "module": "scraper_listing", "message": "page_selector_failed", "page": 99, "attempt": 3, "error": "Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n", "debug_event": "page_selector_failed", "debug_page": 99, "session_attempt": 4, "current_url": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page=99&sortmode=ListedDate", "page_title": "Lowongan Kerja Teknologi Informasi & Komunikasi di Indonesia - Mei 2026 (Halaman 99) | Jobstreet", "screenshot_path": "logs\\pipeline\\debug\\20260501_184839_page_selector_failed_page99.png", "html_path": "logs\\pipeline\\debug\\20260501_184839_page_selector_failed_page99.html", "html_preview": "<!DOCTYPE html><html lang=\"id\" prefix=\"og: http://ogp.me/ns#\"><head> <meta charset=\"utf-8\"> <meta name=\"referrer\" content=\"no-referrer-when-downgrade\"> <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> <meta name=\"apple-mobile-web-app-title\" content=\"Jobstreet\"> <meta name=\"mobile-web-app-capable\" content=\"yes\"> <meta name=\"request-id\" content=\"MC45NDMzMDQwMzc0MTI0NDE3\"> <meta name=\"theme-color\" content=\"#fff\"> <meta name=\"viewport\" content=\"width=device-width, initial-sca", "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\ETL\\Extract\\scraper_listing.py\", line 239, in get_semua_job_id\n    page.wait_for_selector('article[data-automation=\"normalJob\"]', timeout=8000)\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 8217, in wait_for_selector\n    self._sync(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 419, in wait_for_selector\n    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 369, in wait_for_selector\n    await self._channel.send(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n"}
+{"timestamp": "2026-05-01T11:48:55.928721+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 100}
+{"timestamp": "2026-05-01T11:49:05.414487+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 100, "attempt": 1}
+{"timestamp": "2026-05-01T11:49:18.047326+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 100, "attempt": 2}
+{"timestamp": "2026-05-01T11:49:42.007465+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 100, "attempt": 3}
+{"timestamp": "2026-05-01T11:49:42.376303+00:00", "level": "ERROR", "module": "scraper_listing", "message": "page_selector_failed", "page": 100, "attempt": 3, "error": "Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n", "debug_event": "page_selector_failed", "debug_page": 100, "session_attempt": 4, "current_url": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page=100&sortmode=ListedDate", "page_title": "Lowongan Kerja Teknologi Informasi & Komunikasi di Indonesia - Mei 2026 (Halaman 100) | Jobstreet", "screenshot_path": "logs\\pipeline\\debug\\20260501_184942_page_selector_failed_page100.png", "html_path": "logs\\pipeline\\debug\\20260501_184942_page_selector_failed_page100.html", "html_preview": "<!DOCTYPE html><html lang=\"id\" prefix=\"og: http://ogp.me/ns#\"><head> <meta charset=\"utf-8\"> <meta name=\"referrer\" content=\"no-referrer-when-downgrade\"> <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> <meta name=\"apple-mobile-web-app-title\" content=\"Jobstreet\"> <meta name=\"mobile-web-app-capable\" content=\"yes\"> <meta name=\"request-id\" content=\"MC43MTEwMTg1OTU3Nzg4NjQ1\"> <meta name=\"theme-color\" content=\"#fff\"> <meta name=\"viewport\" content=\"width=device-width, initial-sca", "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\ETL\\Extract\\scraper_listing.py\", line 239, in get_semua_job_id\n    page.wait_for_selector('article[data-automation=\"normalJob\"]', timeout=8000)\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 8217, in wait_for_selector\n    self._sync(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 419, in wait_for_selector\n    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 369, in wait_for_selector\n    await self._channel.send(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n"}
+{"timestamp": "2026-05-01T11:49:44.878831+00:00", "level": "INFO", "module": "scraper_listing", "message": "page_fetch", "page": 101}
+{"timestamp": "2026-05-01T11:49:54.871615+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 101, "attempt": 1}
+{"timestamp": "2026-05-01T11:50:20.146378+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 101, "attempt": 2}
+{"timestamp": "2026-05-01T11:50:31.901664+00:00", "level": "WARNING", "module": "scraper_listing", "message": "retry_selector", "page": 101, "attempt": 3}
+{"timestamp": "2026-05-01T11:50:38.066962+00:00", "level": "ERROR", "module": "scraper_listing", "message": "page_selector_failed", "page": 101, "attempt": 3, "error": "Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n", "debug_event": "page_selector_failed", "debug_page": 101, "session_attempt": 4, "current_url": "https://id.jobstreet.com/id/jobs-in-information-communication-technology?page=101&sortmode=ListedDate", "page_title": "Lowongan Kerja Teknologi Informasi & Komunikasi di Indonesia - Mei 2026 (Halaman 101) | Jobstreet", "screenshot_path": "logs\\pipeline\\debug\\20260501_185031_page_selector_failed_page101.png", "html_path": "logs\\pipeline\\debug\\20260501_185031_page_selector_failed_page101.html", "html_preview": "<!DOCTYPE html><html lang=\"id\" prefix=\"og: http://ogp.me/ns#\"><head> <meta charset=\"utf-8\"> <meta name=\"referrer\" content=\"no-referrer-when-downgrade\"> <meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> <meta name=\"apple-mobile-web-app-title\" content=\"Jobstreet\"> <meta name=\"mobile-web-app-capable\" content=\"yes\"> <meta name=\"request-id\" content=\"MC41NTg0NzE4MzE2MTUwMTMy\"> <meta name=\"theme-color\" content=\"#fff\"> <meta name=\"viewport\" content=\"width=device-width, initial-sca", "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\ETL\\Extract\\scraper_listing.py\", line 239, in get_semua_job_id\n    page.wait_for_selector('article[data-automation=\"normalJob\"]', timeout=8000)\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 8217, in wait_for_selector\n    self._sync(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_page.py\", line 419, in wait_for_selector\n    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_frame.py\", line 369, in wait_for_selector\n    await self._channel.send(\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 69, in send\n    return await self._connection.wrap_api_call(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\acer\\OneDrive\\Desktop\\Project TA\\.venv\\Lib\\site-packages\\playwright\\_impl\\_connection.py\", line 559, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None\nplaywright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"article[data-automation=\\\"normalJob\\\"]\") to be visible\n"}
+{"timestamp": "2026-05-01T11:50:48.331974+00:00", "level": "WARNING", "module": "scraper_listing", "message": "stop_no_response"}
+{"timestamp": "2026-05-01T11:50:50.717833+00:00", "level": "INFO", "module": "scraper_listing", "message": "scrape_done", "total_unique_jobs": 3123}
