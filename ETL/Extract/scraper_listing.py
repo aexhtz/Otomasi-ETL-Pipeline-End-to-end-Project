@@ -28,6 +28,8 @@ logger = setup_logger(
     "scraper_listing",
     log_file="logs/pipeline/scraper_listing.log",
     discord_webhook_url=os.getenv("DISCORD_WEBHOOK_URL"),
+    discord_error_webhook_url=os.getenv("DISCORD_ERROR_WEBHOOK_URL"),
+    discord_warning_webhook_url=os.getenv("DISCORD_WARNING_WEBHOOK_URL"),
 )
 
 BASE_URL = "https://id.jobstreet.com"

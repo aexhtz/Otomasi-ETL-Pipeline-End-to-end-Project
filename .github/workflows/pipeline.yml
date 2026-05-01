@@ -40,7 +40,8 @@ jobs:
           SUPABASE_PASSWORD: ${{ secrets.SUPABASE_PASSWORD }}
           MAX_HALAMAN: ${{ github.event.inputs.max_halaman || vars.MAX_HALAMAN }}
           REQUEST_DELAY: ${{ vars.REQUEST_DELAY }}
-          DISCORD_WEBHOOK_URL: ${{ vars.DISCORD_WEBHOOK_URL }}
+          DISCORD_ERROR_WEBHOOK_URL: ${{ vars.DISCORD_ERROR_WEBHOOK_URL }}
+          DISCORD_WARNING_WEBHOOK_URL: ${{ vars.DISCORD_WARNING_WEBHOOK_URL }}
         run: python pipeline.py || python pipeline.py
 
       - name: Upload logging

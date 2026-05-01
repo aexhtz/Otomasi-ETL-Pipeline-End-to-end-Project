@@ -38,17 +38,27 @@ class JsonFormatter(logging.Formatter):
 
 
 class DiscordWebhookHandler(logging.Handler):
-    """Kirim log ERROR/CRITICAL ke Discord webhook."""
+    """Kirim log ke Discord webhook untuk level tertentu."""
 
-    def __init__(self, webhook_url: str):
-        super().__init__(level=logging.ERROR)
+    def __init__(self, webhook_url: str, min_level: int, max_level: int | None = None):
+        super().__init__(level=min_level)
         self.webhook_url = webhook_url
+        self.min_level = min_level
+        self.max_level = max_level
 
     def _friendly_title(self, record) -> str:
         titles = {
             "page1_validation_failed": "Validasi halaman pertama gagal",
             "page_load_failed": "Halaman listing gagal dimuat",
             "page_selector_failed": "Daftar lowongan tidak muncul",
+            "mode_50_detected": "Mode listing berubah",
+            "page1_not_ideal": "Jumlah lowongan halaman pertama tidak ideal",
+            "retry_selector": "Menunggu daftar lowongan lebih lama",
+            "stop_no_response": "Scraper berhenti karena halaman tidak merespons",
+            "stop_no_new_jobs": "Scraper berhenti karena tidak ada job baru",
+            "stop_max_page_limit": "Scraper mencapai batas halaman",
+            "mode_changed_to_50": "Mode listing berubah saat scraping",
+            "skip_article_error": "Satu item lowongan dilewati",
             "Runtime stop karena error": "Pipeline berhenti karena error",
         }
         return titles.get(record.getMessage(), record.getMessage().replace("_", " ").title())
@@ -67,6 +77,8 @@ class DiscordWebhookHandler(logging.Handler):
             error = str(record.exc_info[1])
 
         if not error:
+            if record.levelno == logging.WARNING:
+                return "Ada kondisi yang perlu dipantau, tetapi pipeline belum tentu berhenti."
             return "Terjadi error saat pipeline berjalan."
 
         error_text = re.sub(r"\s+", " ", str(error)).strip()
@@ -124,10 +136,20 @@ class DiscordWebhookHandler(logging.Handler):
         }
 
     def emit(self, record):
+        if record.levelno < self.min_level:
+            return
+        if self.max_level is not None and record.levelno > self.max_level:
+            return
+
         try:
             attachment_paths = self._attachment_paths(record)
+            content = (
+                "**Pipeline butuh perhatian**"
+                if record.levelno >= logging.ERROR
+                else "**Monitoring warning pipeline**"
+            )
             payload = {
-                "content": "**Pipeline butuh perhatian**",
+                "content": content,
                 "username": "Pipeline Logger",
                 "embeds": [self._build_embed(record)],
             }
@@ -169,6 +191,8 @@ def setup_logger(
     name: str,
     log_file: str | None = None,
     discord_webhook_url: str | None = None,
+    discord_error_webhook_url: str | None = None,
+    discord_warning_webhook_url: str | None = None,
 ):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
@@ -190,9 +214,24 @@ def setup_logger(
         fh.setFormatter(formatter)
         logger.addHandler(fh)
 
-    if discord_webhook_url:
-        dh = DiscordWebhookHandler(discord_webhook_url)
-        dh.setFormatter(formatter)
-        logger.addHandler(dh)
+    error_webhook_url = discord_error_webhook_url or discord_webhook_url
+    warning_webhook_url = discord_warning_webhook_url or discord_webhook_url
+
+    if warning_webhook_url:
+        warning_handler = DiscordWebhookHandler(
+            warning_webhook_url,
+            min_level=logging.WARNING,
+            max_level=logging.WARNING,
+        )
+        warning_handler.setFormatter(formatter)
+        logger.addHandler(warning_handler)
+
+    if error_webhook_url:
+        error_handler = DiscordWebhookHandler(
+            error_webhook_url,
+            min_level=logging.ERROR,
+        )
+        error_handler.setFormatter(formatter)
+        logger.addHandler(error_handler)
 
     return logger

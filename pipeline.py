@@ -28,12 +28,16 @@ MAX_HALAMAN   = int(os.getenv("MAX_HALAMAN", "2"))
 REQUEST_DELAY = float(os.getenv("REQUEST_DELAY", "0.5"))
 OUTPUT_CSV    = os.getenv("OUTPUT_CSV", "hasil_scrap.csv")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+DISCORD_ERROR_WEBHOOK_URL = os.getenv("DISCORD_ERROR_WEBHOOK_URL")
+DISCORD_WARNING_WEBHOOK_URL = os.getenv("DISCORD_WARNING_WEBHOOK_URL")
 
 os.makedirs("logs/pipeline", exist_ok=True)
 logger = setup_logger(
     "pipeline",
     log_file="logs/pipeline/pipeline.log",
     discord_webhook_url=DISCORD_WEBHOOK_URL,
+    discord_error_webhook_url=DISCORD_ERROR_WEBHOOK_URL,
+    discord_warning_webhook_url=DISCORD_WARNING_WEBHOOK_URL,
 )
 
 # ---- Incremental
