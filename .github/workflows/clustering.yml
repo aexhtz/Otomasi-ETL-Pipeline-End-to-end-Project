@@ -19,6 +19,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: requirements/clustering_ml.txt
 
       - name: Install dependensi
         run: pip install -r requirements/machine_learning.txt
